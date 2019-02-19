@@ -63,7 +63,7 @@ module.exports = {
 
   ],
   resolve: {
-    extensions: ['.js', '.styl', '.css', '.html']
+    extensions: ['.js', '.styl', '.css', '.html', '.png']
   },
   module: {
     rules: [
@@ -114,6 +114,10 @@ module.exports = {
         test: /\.css$/,
         include: /src/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
     ]
   },
