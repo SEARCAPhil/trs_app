@@ -108,6 +108,7 @@ const loadRoutes = () => {
         loadHomePage()
       },
       '/vehicle/*': () => {
+        loadMain(profile)
         import('./routers/vehicle')
       },
       '/vehicle': () => {

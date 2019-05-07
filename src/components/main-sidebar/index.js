@@ -12,7 +12,7 @@ export default class {
     this.__template.innerHTML = `
     <style>${style.toString()}</style>
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <nav class="sidebar">
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 10px;">
         <li class="active">
           <a href="#/home"><i class="fa fa-users"></i> <span>Home</span></a>
@@ -22,22 +22,34 @@ export default class {
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 10px;">
         <li class="header">List</li>
-        <li class="active treeview menu-open">
-          <a href="#/vehicle"><i class="fa fa-users"></i> <span>Vehicle</span></a>
-          <ul class="treeview-menu" style="">
-            <li class="active"><a href="#/vehicle/form/"><i class="fa fa-circle-o"></i> <span>Form</span></a></li>
-          </ul>
+        <li class="">
+          <a href="#/vehicle"><i class="fa fa-car"></i> <span>Vehicle</span></a>
+        </li>
+
+        <li class="disabled">
+          <a href="#/vehicle"><i class="fa fa-user-tie"></i> <span>Drivers</span></a>
+        </li>
+        <li class="header">General Forms</li>
+        <li class="">
+          <a href="#/vehicle"><i class="fa fa-hourglass-half"></i> <span>Time Record</span></a>
+        </li>
+        <li class="disabled">
+          <a href="#/vehicle"><i class="fa fa-gas-pump"></i> <span>Gasoline</span></a>
+        </li>
+        <li class="header">Reports</li>
+        <li class="disabled">
+          <a href="#/vehicle"><i class="fa fa-users"></i> <span>Gasoline Overlay</span></a>
         </li>
       </ul>
   
   
 
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 100px;">
-        <li><a href="#/signout" style="background: #334852;"><i class="fa fa-long-arrow-left"></i> <span>Sign-out</span></a></li>
+        <li><a href="#/signout" style="background: #353738;"><i class="fa fa-long-arrow-left"></i> <span>Sign-out</span></a></li>
       </ul>
 
       <!-- /.sidebar-menu -->
-    </section>`
+    </nav>`
 
     return this.__template
   }

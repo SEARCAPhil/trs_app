@@ -20,14 +20,12 @@ export default class {
     this.__template.innerHTML = `
         <style>${style.toString()}</style>
         <!-- Header Navbar -->
-        <a href="#" class="logo hidden-xs" style="background-color: #353738;">
+        <a href="#" class="logo hidden-xs" style="background-color: #292929;font-size: 12.5px;text-align: left !important;padding-top:10px;line-height: 15px !important;">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">
-            <center>
-
-            </center>
+          <span style="">
+           Travel Services <br/>Management System
           </span>
         </a>
 
@@ -46,7 +44,7 @@ export default class {
                   <!-- The user image in the navbar-->
                   ${this.__opt.image ? '<img src="' + this.__opt.image + '" class="user-image" alt="User Image"/>' : ''}
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">${this.__opt.displayName}</span>
+                  <span class="hidden-xs">${this.__opt.displayName || ''}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->

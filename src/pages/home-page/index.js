@@ -12,7 +12,7 @@ export default class {
       <style>${style.toString()}</style>
       <div class="home-section-text">
         <center>
-          <img src="assets/img/bag.png" width="150px"/>
+          <img src="assets/img/bag.png" width="130px"/>
           <h3>Travel Services Management System</h3>
           <p>Manage your land travel at one place!</p>
         </center>
