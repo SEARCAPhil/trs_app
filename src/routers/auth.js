@@ -11,7 +11,7 @@ const loadLoginPage = (mode = 'o365') => {
   let sidebar = document.querySelector('.main-sidebar')
   if (header) header.classList.add('hidden')
   if (sidebar) sidebar.classList.add('hidden')
-  
+
   // import office 365 or standard login section
   let page = mode === 'o365' ? import('../pages/login-page') : import('../pages/login-page-typical')
   page.then(res => {
@@ -23,8 +23,6 @@ const loadLoginPage = (mode = 'o365') => {
     })
   })
 }
-
-
 
 Navigo.then(routerClass => {
   const router = new routerClass.default(URL.fullPath, true)

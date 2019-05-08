@@ -8,7 +8,7 @@ export default class {
   async render () {
     this.__template = document.createElement('section')
     this.__template.classList.add('home-section')
-    this.__template.innerHTML =   `
+    this.__template.innerHTML = `
       <style>${style.toString()}</style>
       <div class="home-section-text">
         <center>

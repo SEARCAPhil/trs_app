@@ -8,11 +8,11 @@ export default class {
   }
 
   __bindLogin () {
-   
+
   }
 
   __bindListeners (opt = {}) {
-    //this.__bindLogin()
+    // this.__bindLogin()
   }
 
   async render () {

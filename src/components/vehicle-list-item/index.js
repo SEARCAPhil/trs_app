@@ -16,7 +16,7 @@ export default class {
     this.__template = document.createElement('section')
     this.__template.classList.add('vehicle-list-item')
     this.__template.innerHTML = `
-    <section class="col-lg-3 col-md-4 vehicle-list-item">
+    <section class="col-lg-3 col-md-4 col-sm-12 col-xs-12 vehicle-list-item">
       <div class="media">
         <div class="media-left">
           <img src="${wigo}" class="media-object" style="width:100%; min-width: 120px;">
@@ -30,7 +30,7 @@ export default class {
         </div>
       </div>
     </section>`
-    this.__bindListeners ()
+    this.__bindListeners()
     return this.__template
   }
 }

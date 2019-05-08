@@ -3,7 +3,6 @@ import { URL } from './config/app'
 
 const Navigo = import('navigo')
 
-
 const loadHeader = (opt) => {
   const __header = import('./components/main-header')
   __header.then(Res => {
@@ -34,10 +33,16 @@ const loadCookieSection = (opt) => {
   })
 }
 
+const hideHomePage = () => {
+  let targ = document.querySelector('.home-section')
+  if (targ) targ.parentNode.removeChild(targ)
+}
+
 const loadMain = (opt = {}) => {
   loadHeader(opt)
   loadSidebar(opt)
   loadCookieSection(opt)
+  hideHomePage()
 
   let token = window.localStorage.getItem('adal.access.token.keyhttps://graph.microsoft.com')
 
@@ -49,7 +54,7 @@ const loadMain = (opt = {}) => {
       let reader = new window.FileReader()
       reader.readAsDataURL(blob)
       reader.onloadend = function () {
-        Profiler.then(prof => {
+        /* Profiler.then(prof => {
           let p = new prof.default()
           if (reader.result.indexOf('data:image') !== -1) {
             // check for valid image
@@ -59,7 +64,7 @@ const loadMain = (opt = {}) => {
             // reload header
             loadHeader(opt)
           }
-        })
+        }) */
       }
     })
   })
@@ -69,12 +74,11 @@ const loadMain = (opt = {}) => {
   if (loginContainer) loginContainer.remove()
 }
 
-
-const loadHomePage = (opt = {}) => { 
+const loadHomePage = (opt = {}) => {
   const __page = import('./pages/home-page')
   const __target = document.querySelector('.home-section')
   __page.then(Res => {
-    return new Res.default(opt).then(html => { 
+    return new Res.default(opt).then(html => {
       return __target ? __target.replaceWith(html) : document.querySelector('.ajax-main-section').prepend(html)
     })
   })
@@ -94,27 +98,30 @@ const loadRoutes = () => {
     const router = new routerClass.default(URL.fullPath, true)
     router.on({
       '': async () => {
-        loadLoginPage()
+        // loadLoginPage()
       },
       '/login/*': () => {
+        loadMain(profile)
         import('./routers/auth')
       },
       '/signout': () => {
 
       },
-      '/home': () => { 
+      '/home': () => {
         let profile = {}
+        // empty section
+        document.querySelector('.ajax-main-section').innerHTML = ''
         loadMain(profile)
         loadHomePage()
       },
       '/vehicle/*': () => {
         loadMain(profile)
-        import('./routers/vehicle')
+        import('./routers/vehicle/')
       },
       '/vehicle': () => {
         loadMain(profile)
-        import('./routers/vehicle')
-      },
+        import('./routers/vehicle/')
+      }
     }).resolve()
   })
 }

@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 import style from './style'
 
 export default class {
@@ -5,76 +6,11 @@ export default class {
     return this.render()
   }
 
-  __bindChart () {
-    const highCharts = import('highcharts')
-    highCharts.then(res => {
-      const Highcharts = res.default
-      Highcharts.chart(this.__template.querySelector('#service-chart-container'), {
-        chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
-        },
-        title: {
-            text: 'Useful Life'
-        },
-        subtitle: {
-          text: '<br/><small>Maximum of 15 years</small>'
-        },
-        tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      plotOptions: {
-          pie: {
-              allowPointSelect: true,
-              cursor: 'pointer',
-              dataLabels: {
-                  enabled: true,
-                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                  style: {
-                      color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                  }
-              }
-          }
-      },credits: {
-        enabled: false
-      },
-        series: [{
-            name: 'Utilized years',
-            colorByPoint: true,
-            data: [{
-              name: 'In service',
-              y: 1,
-              sliced: true,
-              selected: true
-            },
-            {
-              name: 'remaining',
-              y: 15,
-              
-            }
-          ],
-            dataLabels: {
-              formatter: function () {
-                  return this.y > 5 ? this.point.name : null;
-              },
-              color: '#ffffff',
-              distance: -30
-          }
-        }]
-      })
-      
-    })
-  }
-
   __bindListeners () {
-    //this.__bindChart ()
-    this.loadMenuSection ()
+    // this.__bindChart ()
+    this.loadMenuSection()
     // mock vehicles
-    for(let x = 0; x < 5; x++) { this.loadVehicleItems ({id: x}) }
-
-    
+    for (let x = 0; x < 5; x++) { this.loadVehicleItems({ id: x }) }
   }
 
   loadMenuSection (opt) {
@@ -99,11 +35,11 @@ export default class {
 
   async render () {
     this.__template = document.createElement('section')
-    this.__template.classList.add('vehicle-section', 'row')
-    this.__template.innerHTML =   `
+    this.__template.classList.add('vehicle-section')
+    this.__template.innerHTML = `
       <style>${style.toString()}</style>
       <vehicle-list-menu></vehicle-list-menu>
-      <article class="col col-lg-12 col-md-12">
+      <article class="col col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <section class="col col-lg-12" style="padding: 20px;margin:20px 20px;">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/> 
             Proin erat sapien, ultrices a egestas sed, pellentesque pretium lectus.<br/> 

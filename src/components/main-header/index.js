@@ -33,6 +33,7 @@ export default class {
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle main-menu-btn" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
+            <i class="fa fa-bars"></i>
           </a>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">

@@ -1,15 +1,16 @@
+/* eslint-disable new-cap */
 import style from './style'
 import wigo from '../../components/vehicle-list-item/assets/img/wigo.png'
 
 export default class {
-  constructor () {
+  constructor (opt) {
+    this.__opt = opt
     return this.render()
   }
 
   __bindListeners () {
-    //this.__bindChart ()
-    this.loadMenuSection ()
-    
+    // this.__bindChart ()
+    this.loadMenuSection(this.__opt)
   }
 
   loadMenuSection (opt) {
@@ -25,7 +26,7 @@ export default class {
   async render () {
     this.__template = document.createElement('section')
     this.__template.classList.add('vehicle-section', 'row')
-    this.__template.innerHTML =   `
+    this.__template.innerHTML = `
       <style>${style.toString()}</style>
       <vehicle-profile-menu></vehicle-profile-menu>
       <article class="col col-lg-12 col-md-12 vehicle-profile-section">

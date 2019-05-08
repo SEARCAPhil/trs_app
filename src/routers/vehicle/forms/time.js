@@ -1,8 +1,8 @@
 /* eslint-disable new-cap */
 const Navigo = import('navigo')
 
-const loadVehicleProfilePage = (opt = {}) => {
-  const __page = import('../../pages/vehicle-profile')
+const loadVehicleTimeRecordPage = (opt = {}) => {
+  const __page = import('../../../pages/vehicle-time-record-form')
   const __target = document.querySelector('.vehicle-section')
   __page.then(Res => {
     return new Res.default(opt).then(html => {
@@ -15,8 +15,8 @@ Navigo.then(routerClass => {
   const router = new routerClass.default(URL.fullPath, true)
   router.on({
     '': () => { },
-    '/vehicle/:id/profile': async (opt) => {
-      loadVehicleProfilePage(opt)
+    '/vehicle/forms/time': async () => {
+      loadVehicleTimeRecordPage()
     }
   }).resolve()
 })

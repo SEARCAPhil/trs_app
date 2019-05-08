@@ -11,8 +11,8 @@ export default class {
     this.__template.classList.add('vehicle-list-menu')
     this.__template.innerHTML = `
     <style>${style.toString()}</style>
-    <section class="col col-lg-12">
-      <nav class="col-lg-6 col-md-6">
+    <section class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <nav class="col-lg-6 col-md-6 col-sm-8">
         <ul class="nav navbar-nav">
           <li><a href="#">All</a></li>
           <li><a href="#">Available</a></li>
@@ -20,11 +20,11 @@ export default class {
           <li><a href="#">Others</a></li>
         </ul>
       </nav>
-      <section class="col-lg-6 col-md-6 row">
-        <div class="col col-md-8 col-lg-8">
+      <section class="col-lg-6 col-md-6 col-sm-4 row">
+        <div class="col col-md-8 col-lg-8 col-sm-9">
           <input type="text" class="form-control vehicle-search-box">
         </div>
-        <div class="col col-2 col-md-2 col-lg-2">
+        <div class="col col-2 col-md-2 col-lg-2 col-sm-3">
           <button class="btn btn-default  vehicle-search-btn">Find</button>
         </div>
       </section>

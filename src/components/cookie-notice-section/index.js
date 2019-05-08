@@ -9,8 +9,8 @@ export default class {
   __bindListeners () {
     document.addEventListener('scroll', (e) => {
       // hide container if user scrolls at the middle
-      if((document.body.scrollTop + document.body.clientHeight) >= document.body.scrollHeight / 2) {
-        return this.__template.classList.add('hide-cookie') 
+      if ((document.body.scrollTop + document.body.clientHeight) >= document.body.scrollHeight / 2) {
+        return this.__template.classList.add('hide-cookie')
       }
 
       return this.__template.classList.remove('hide-cookie')

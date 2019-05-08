@@ -31,7 +31,7 @@ export default class {
         </li>
         <li class="header">General Forms</li>
         <li class="">
-          <a href="#/vehicle"><i class="fa fa-hourglass-half"></i> <span>Time Record</span></a>
+          <a href="#/vehicle/forms/time"><i class="fa fa-hourglass-half"></i> <span>Time Record</span></a>
         </li>
         <li class="disabled">
           <a href="#/vehicle"><i class="fa fa-gas-pump"></i> <span>Gasoline</span></a>
