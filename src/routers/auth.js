@@ -1,19 +1,18 @@
 /* eslint-disable new-cap */
 const Navigo = import('navigo')
 
-const loadLoginPage = (mode = 'o365') => {
-  document.querySelector('.wrapper').classList.add('hidden')
+const loadLoginPage = () => {
+  
   const loginContainer = document.createElement('main')
+  const header = document.querySelector('.main-header')
+  const sidebar = document.querySelector('.main-sidebar')
   loginContainer.classList.add('loginContainer')
+  document.querySelector('.wrapper').classList.add('hidden')
 
-  // hide other section
-  let header = document.querySelector('.main-header')
-  let sidebar = document.querySelector('.main-sidebar')
-  if (header) header.classList.add('hidden')
-  if (sidebar) sidebar.classList.add('hidden')
-
+  if(header) header.remove ()
+  if(sidebar) sidebar.remove ()
   // import office 365 or standard login section
-  let page = mode === 'o365' ? import('../pages/login-page') : import('../pages/login-page-typical')
+  let page = import('../pages/login-page-default') 
   page.then(res => {
     return new res.default().then(html => {
       loginContainer.innerHTML = ''
@@ -28,11 +27,11 @@ Navigo.then(routerClass => {
   const router = new routerClass.default(URL.fullPath, true)
   router.on({
     '': () => { },
-    '/login/o365': async () => {
-      loadLoginPage()
-    },
     '/login/corporate': async () => {
-      loadLoginPage('typical')
+      loadLoginPage ()
+    },
+    '/login': async () => { 
+      loadLoginPage ()
     }
   }).resolve()
 })

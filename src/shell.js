@@ -100,12 +100,15 @@ const loadRoutes = () => {
       '': async () => {
         // loadLoginPage()
       },
+      '/login': () => {
+        import('./routers/auth')
+      },
       '/login/*': () => {
-        loadMain(profile)
         import('./routers/auth')
       },
       '/signout': () => {
-
+        document.querySelector('.wrapper').innerHTML = ''   
+        window.location.hash = '/login'
       },
       '/home': () => {
         let profile = {}

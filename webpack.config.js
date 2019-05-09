@@ -41,11 +41,11 @@ module.exports = {
       skipWaiting: true,
       clientsClaim: true,
       runtimeCaching: [{
-        urlPattern: new RegExp('http://localhost/contacts_web'),
+        urlPattern: new RegExp('http://localhost/trs_app'),
         handler: 'staleWhileRevalidate'
       },
       {
-        urlPattern: new RegExp('http://localhost/contacts_api'),
+        urlPattern: new RegExp('http://localhost/trs_api'),
         handler: 'networkFirst',
         options: {
           // Fall back to the cache after 10 seconds.
