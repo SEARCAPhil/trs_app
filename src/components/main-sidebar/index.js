@@ -25,8 +25,7 @@ export default class {
         <li class="">
           <a href="#/vehicle"><i class="fa fa-car"></i> <span>Vehicle</span></a>
         </li>
-
-        <li class="disabled">
+        <li>
           <a href="#/vehicle"><i class="fa fa-user-tie"></i> <span>Drivers</span></a>
         </li>
         <li class="header">General Forms</li>
@@ -41,8 +40,6 @@ export default class {
           <a href="#/vehicle"><i class="fa fa-users"></i> <span>Gasoline Overlay</span></a>
         </li>
       </ul>
-  
-  
 
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 100px;">
         <li><a href="#/signout" style="background: #353738;"><i class="fa fa-long-arrow-left"></i> <span>Sign-out</span></a></li>

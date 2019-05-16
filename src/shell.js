@@ -99,6 +99,7 @@ const loadRoutes = () => {
     router.on({
       '': async () => {
         // loadLoginPage()
+        window.location.hash = '/home'
       },
       '/login': () => {
         import('./routers/auth')

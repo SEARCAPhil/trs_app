@@ -41,11 +41,12 @@ export default class {
       <vehicle-list-menu></vehicle-list-menu>
       <article class="col col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <section class="col col-lg-12" style="padding: 20px;margin:20px 20px;">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/> 
-            Proin erat sapien, ultrices a egestas sed, pellentesque pretium lectus.<br/> 
-            Fusce volutpat ante in tortor cursus euismod. Praesent et fringilla felis. 
-            <button class="btn btn-sm btn-primary">New</button>
+          <h3>SEARCA's list of aquired vehicles</h3>
+          <p class="text-muted">
+            Click the vehicle to see their full information<br/> 
+            <!--<button class="btn btn-sm btn-primary">New</button>-->
           </p>
+          <hr/>
         </section>
       </article>
       <article class="car-box-container col-lg-12"></article>`

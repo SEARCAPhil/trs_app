@@ -48,7 +48,8 @@ export default class {
       }
 
       .doodle-alt {
-        background:url('assets/img/doodle2.png') center center no-repeat;
+        background:url('assets/img/doodle3.png') center center no-repeat;
+        background-size: cover;
       }
     </style>
     <div style="min-height: 1170px;">
@@ -64,7 +65,7 @@ export default class {
 
                 <section class="sign-in-options">
                   <p class="text-muted text-larger">Sign-in options</p>
-                  <button class="btn btn-office365 go-to-app-btn">Office365 Account</button>
+                  <button class="btn btn-office365 go-to-app-btn disabled">Office365 Account</button>
                   <button class="btn btn-corporate go-to-app-btn btn-corporate-show" data-toggle="show">Corporate Account</button>
                 </section>
 
