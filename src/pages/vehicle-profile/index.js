@@ -8,8 +8,10 @@ export default class {
     return this.render()
   }
 
-  __bindListeners () {
-    // this.__bindChart ()
+  async __bindListeners () {
+    // set active
+    let PubSub = (await import('pubsub-js')).default
+    PubSub.publish('MAIN_NAV', 'vehicle')
     this.loadMenuSection(this.__opt)
   }
 

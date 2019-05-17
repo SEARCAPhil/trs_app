@@ -1,9 +1,26 @@
 import style from './index.styl'
+import PubSub from 'pubsub-js'
 
 export default class {
   constructor (opt = {}) {
     this.__opt = opt
     return this.render(opt)
+  }
+
+  setActiveNav (nav) {
+    this.__template.querySelectorAll('.sidebar-menu > li').forEach((el, index) => {
+      if(el.classList.contains(nav)) {
+        el.classList.add('active')
+      } else {
+        el.classList.remove('active')
+      }
+    })
+  }
+  __bindListeners () {
+    PubSub.unsubscribe('MAIN_NAV')
+    PubSub.subscribe('MAIN_NAV', (msg, data) => {
+      this.setActiveNav (data) 
+    })
   }
 
   async render () {
@@ -14,7 +31,7 @@ export default class {
     <!-- sidebar: style can be found in sidebar.less -->
     <nav class="sidebar">
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 10px;">
-        <li class="active">
+        <li class="home">
           <a href="#/home"><i class="fa fa-users"></i> <span>Home</span></a>
         </li>
       </ul>
@@ -22,14 +39,14 @@ export default class {
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 10px;">
         <li class="header">List</li>
-        <li class="">
+        <li class="vehicle">
           <a href="#/vehicle"><i class="fa fa-car"></i> <span>Vehicle</span></a>
         </li>
-        <li>
+        <li class="drivers">
           <a href="#/vehicle"><i class="fa fa-user-tie"></i> <span>Drivers</span></a>
         </li>
         <li class="header">General Forms</li>
-        <li class="">
+        <li class="time">
           <a href="#/vehicle/forms/time"><i class="fa fa-hourglass-half"></i> <span>Time Record</span></a>
         </li>
         <li class="disabled">
@@ -47,7 +64,7 @@ export default class {
 
       <!-- /.sidebar-menu -->
     </nav>`
-
+    this.__bindListeners ()
     return this.__template
   }
 }

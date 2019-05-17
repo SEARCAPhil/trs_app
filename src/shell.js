@@ -1,5 +1,6 @@
 /* eslint-disable new-cap */
 import { URL } from './config/app'
+import Message from 'vanilla-antd-message/dist/'
 
 const Navigo = import('navigo')
 
@@ -32,6 +33,7 @@ const loadCookieSection = (opt) => {
     })
   })
 }
+
 
 const hideHomePage = () => {
   let targ = document.querySelector('.home-section')
@@ -130,6 +132,7 @@ const loadRoutes = () => {
   })
 }
 loadRoutes()
+
 // service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -139,4 +142,29 @@ if ('serviceWorker' in navigator) {
       console.log('SW registration failed: ', registrationError)
     })
   })
+
+
+  // on update
+  // eeeeeee
+  navigator.serviceWorker.controller.onstatechange = function (event) {
+    if (event.target.state === 'redundant') {
+
+      if ('controller' in navigator.serviceWorker) {
+        import('vanilla-antd-message/dist/style.css').then(res => { 
+          // update notice style
+          let style = document.createElement('style')
+          style.innerHTML = `${res.default.toString()}`
+          style.async = true  
+          document.body.append(style)
+        })
+        // show message then restart the app
+        Message.success('A new update is available! To bring the most out of it, we will now restart your application', 20000)
+        setTimeout(() => { 
+          window.location.reload()
+        }, 3000)
+      }
+    
+    }
+  }
 }
+

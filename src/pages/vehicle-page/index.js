@@ -6,9 +6,14 @@ export default class {
     return this.render()
   }
 
-  __bindListeners () {
+  async __bindListeners () {
     // this.__bindChart ()
     this.loadMenuSection()
+
+    //set active
+    let PubSub = (await import('pubsub-js')).default
+    PubSub.publish('MAIN_NAV', 'vehicle')
+
     // mock vehicles
     for (let x = 0; x < 5; x++) { this.loadVehicleItems({ id: x }) }
   }

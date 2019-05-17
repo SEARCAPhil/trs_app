@@ -2,6 +2,7 @@ import { tns } from "tiny-slider/src/tiny-slider.module.js"
 import style from './style'
 import install from './assets/img/install.png'
 import running from './assets/img/running.png'
+import PubSub from 'pubsub-js'
 
 export default class {
   constructor () {
@@ -22,11 +23,15 @@ export default class {
     })
   }
 
-  __bindListener () { 
-   
+  async __bindListener () { 
+    // set active
+    let PubSub = (await import('pubsub-js')).default
+    PubSub.publish('MAIN_NAV', 'home')
+
     if(document.querySelector('.ajax-main-section')) {
       setTimeout(() => this.loadSlider () ,1)
     }
+
   }
 
   async render () {
