@@ -145,7 +145,6 @@ if ('serviceWorker' in navigator) {
 
 
   // on update
-  // eeeeeee
   navigator.serviceWorker.controller.onstatechange = function (event) {
     if (event.target.state === 'redundant') {
 
@@ -168,3 +167,19 @@ if ('serviceWorker' in navigator) {
   }
 }
 
+
+window.deferredPrompt = {};
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  window.deferredPrompt = e;
+  const __banner = import('./components/install-notice-section')
+  const __target = document.querySelector('.install-notice-section')
+  __banner.then(Res => {
+    return new Res.default().then(html => {
+      return __target ? __target.replaceWith(html) : document.body.append(html)
+    })
+  })
+})
