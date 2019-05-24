@@ -14,10 +14,10 @@ export default class {
     <section class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <nav class="col-lg-6 col-md-6 col-sm-8">
         <ul class="nav navbar-nav">
-          <li><a href="#">All</a></li>
-          <li><a href="#">Available</a></li>
-          <li><a href="#">Unavailable</a></li>
-          <li><a href="#">Others</a></li>
+          <li class="active"><a href="#">All</a></li>
+          <li class="disabled"><a class="text-muted">Available</a></li>
+          <li class="disabled"><a class="text-muted">Unavailable</a></li>
+          <li class="disabled"><a class="text-muted">Others</a></li>
         </ul>
       </nav>
       <section class="col-lg-6 col-md-6 col-sm-4 row">
