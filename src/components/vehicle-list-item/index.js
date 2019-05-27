@@ -28,7 +28,7 @@ export default class {
     this.__template.classList.add('vehicle-list-item', 'col-lg-3', 'col-md-4', 'col-sm-12' ,'col-xs-12')
     this.__template.innerHTML = `
       <style>${style.toString()}</style>
-      <div class="media">
+      <!--<div class="media">
         <div class="media-left">
           <img src="${this.__opt.image ? this.__opt.image : this.__mapIcon(this.__opt.manufacturer) }" class="media-object" style="width:100%; min-width: 100px;">
         </div>
@@ -39,7 +39,15 @@ export default class {
             ${this.__opt.year || ''}
           </p>
         </div>
-      </div>`
+      </div>-->
+        <center>
+        <img src="${this.__opt.image ? this.__opt.image : this.__mapIcon(this.__opt.manufacturer) }" style="width:80px;">
+        <p>
+            <h4 style="text-transform: capitalized;">${this.__opt.manufacturer || ''} ${this.__opt.model || ''}</h4>
+            Plate No. <b>${this.__opt.plate_no.toUpperCase() || this.__opt.conduction_no || ''}</b><br/>
+            ${this.__opt.year || ''}
+          </p>
+      </center>`
     this.__bindListeners()
     return this.__template
   }

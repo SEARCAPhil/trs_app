@@ -4,6 +4,7 @@ import wigo from '../../components/vehicle-list-item/assets/img/wigo.png'
 import honda from '../../components/vehicle-list-item/assets/img/brands/honda.png'
 import toyota from '../../components/vehicle-list-item/assets/img/brands/toyota.png'
 import mitsubishi from '../../components/vehicle-list-item/assets/img/brands/mitsubishi.png'
+import user from '../../components/driver-list-item/assets/img/user.png'
 
 export default class {
   constructor (opt) {
@@ -16,8 +17,8 @@ export default class {
   async __bindListeners () {
     // set active
     let PubSub = (await import('pubsub-js')).default
-    PubSub.publish('MAIN_NAV', 'vehicle')
-    this.loadMenuSection(this.__opt)
+    PubSub.publish('MAIN_NAV', 'driver')
+    //this.loadMenuSection(this.__opt)
     
   }
 
@@ -49,9 +50,18 @@ export default class {
     this.__template.classList.add('vehicle-section', 'row')
     this.__template.innerHTML = `
       <style>${style.toString()}</style>
-      <vehicle-profile-menu></vehicle-profile-menu>
+      <section class="col col-lg-12 driver-profile-page-header">
+        <div class="col col-lg-12 col-md-12"><br/>
+          <p><b>Profile Information</b></p>
+          <small>
+            <p>
+              <i class="fa fa-info-circle text-info"></i> This profile might contain sensitive information and should not be shared to anyone
+            </p>
+          </small>
+        </div>
+      </section>
 
-      <article class="col col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 50px;">
+      <article class="col col-lg-12 col-md-12" style="margin-top: 50px;">
         <!-- info -->
         <div class="col-md-3 user-profile-section">
           <!-- Profile Image -->
@@ -60,12 +70,11 @@ export default class {
 
               <small><a href="#/contacts/form/5200/update" class=" pull-right"><i class="fa fa-pencil"></i> edit</a></small>
 
-              <center>
-                <img src="${this.__profile.image ? this.__profile.image : this.__mapIcon(this.__profile.manufacturer) }" style="min-width: 100px;max-width: 200px;">
-              </center>
-              <div class="btn btn-primary btn-block email-list-section" style="background: #009688;">
-              ${this.__profile.manufacturer || ''} ${this.__profile.model || ''} ${this.__profile.year || ''}
-              </div>
+              <img class="profile-user-img img-responsive img-circle" src="${user}" alt="User profile picture">
+
+              <h3 class="profile-username text-center">   </h3>
+              <p class="text-center">John D. Hey</p>
+              <div class="btn btn-primary btn-block email-list-section" style="background: #009688;">0900000</div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -76,24 +85,16 @@ export default class {
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#info" data-toggle="tab" aria-expanded="true" class="tabs" data-target="#tab-info" data-group="profile-tab-panes">Info</a></li>
+              <li class=""><a href="#lactivities" id="activities" data-toggle="tab" aria-expanded="false" class="tabs" data-target="#tab-activities" data-group="profile-tab-panes">Activities</a></li>
               <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false" class="tabs" data-target="#tab-settings" data-group="profile-tab-panes">Settings</a></li>
             </ul>
             <div class="tab-content">
               
               <div class="tab-pane active" id="tab-info" data-group="profile-tab-panes" style="height: auto;overflow:auto;padding-top: 20px;min-height: 60vh;">
-                <p><b>Year</b> : ${this.__profile.year || 'N/A'}</p>
-                <p><b>Make</b> : ${this.__profile.manufacturer || 'N/A'}</p>
-                <p><b>Model</b> : ${this.__profile.model || 'N/A'}</p>
-                <p><b>Color</b> : <input type="color" value="${this.__profile.color}" disabled/></p>
-                <!--<p><b>Engine No.</b> : xyzabc1234</p>-->
-                <p><b>Transmission Type</b> : ${this.__profile.transmission_type || 'N/A'}</p>
-                <!--<p><b>Vehicle Classification</b> : Box Type</p>-->
-                <p><b>Conduction No.</b> : ${this.__profile.tconduction_no || 'N/A'}</p>
-                <p><b>Plate No.</b> : ${this.__profile.plate_no || 'N/A'}</p>
-                <p><b>Date Acquired</b> : ${this.__profile.date_acquired || 'N/A'}</p>
-                <p><b>Date Registered</b> : ${this.__profile.date_registered || 'N/A'}</p>
-                <p><b>Notes</b> : </p>
-                <p class="text-muted">${this.__profile.notes|| 'N/A'}</p>
+                <p class="text-muted">Basic Details</p><hr/>
+                <p><label>First Name</label> : John</p>
+                <p><label>Last Name</label> : Hey</p>
+                <p><label>Middle Name</label> : Dee</p>
               </div>
 
               <div class="tab-pane" id="tab-settings" data-group="profile-tab-panes">
@@ -116,8 +117,7 @@ export default class {
           </div>
           <!-- /.nav-tabs-custom -->
         </div>
-      </article>
-`
+      </article>`
     this.__bindListeners()
     return this.__template
   }

@@ -127,6 +127,14 @@ const loadRoutes = () => {
       '/vehicle': () => {
         loadMain(profile)
         import('./routers/vehicle/')
+      },
+      '/driver': () => {
+        loadMain(profile)
+        import('./routers/driver/')
+      },
+      '/driver/*': () => {
+        loadMain(profile)
+        import('./routers/driver/')
       }
     }).resolve()
   })

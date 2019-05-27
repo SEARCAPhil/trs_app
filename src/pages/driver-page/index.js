@@ -104,7 +104,7 @@ export default class {
 
     //set active
     let PubSub = (await import('pubsub-js')).default
-    PubSub.publish('MAIN_NAV', 'vehicle')
+    PubSub.publish('MAIN_NAV', 'driver')
 
     import('./actions/list').then(comp => {
       const lists = new comp.default ()
@@ -112,7 +112,7 @@ export default class {
 
       lists.getAutomobile ({page: urlParams.get('page')}).then(res => {
         res.data.forEach(el => {
-          this.loadVehicleItems(el)
+          this.loadItems(el)
         })
 
         // total count
@@ -132,8 +132,8 @@ export default class {
   }
 
   loadMenuSection (opt) {
-    const __menu = import('../../components/vehicle-list-menu')
-    const __target = this.__template.querySelector('.vehicle-list-menu') || this.__template.querySelector('vehicle-list-menu')
+    const __menu = import('../../components/driver-list-menu')
+    const __target = this.__template.querySelector('.driver-list-menu') || this.__template.querySelector('driver-list-menu')
     return new Promise((resolve, reject) => {
       __menu.then(Res => {
         return new Res.default(opt).then(html => {
@@ -144,9 +144,9 @@ export default class {
     })
   }
 
-  loadVehicleItems (opt) {
-    const __menu = import('../../components/vehicle-list-item')
-    const __target = this.__template.querySelector('.car-box-container')
+  loadItems (opt) {
+    const __menu = import('../../components/driver-list-item')
+    const __target = this.__template.querySelector('.box-container')
     __menu.then(Res => {
       return new Res.default(opt).then(html => {
         __target.append(html)
@@ -159,19 +159,18 @@ export default class {
     this.__template.classList.add('vehicle-section')
     this.__template.innerHTML = `
       <style>${style.toString()}</style>
-      <vehicle-list-menu></vehicle-list-menu>
+      <driver-list-menu></driver-list-menu>
       <article class="col col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top:50px;">
-        <section class="car-box-container box col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <section class="box-container box col col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="box-header with-border">
-            <h3>SEARCA's list of aquired vehicles</h3>
+            <h3>SEARCA's list of drivers</h3>
             <i class="fa fa-info-circle text-info"></i> Click the item to see their full information
             <div class="box-tools pull-right">
-             <section class="badge"><span class="current_count">0</span> out of <span class="total_count">0</span></section>
+              <section class="badge"><span class="current_count">0</span> out of <span class="total_count">0</span></section>
             </div>
           </div>
         </section>
       </article>
-
       <article class="car-box-pager-container col-lg-12 col-sm-12 col-md-12"></article>`
     this.__bindListeners()
     return this.__template

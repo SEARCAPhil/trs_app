@@ -42,8 +42,8 @@ export default class {
         <li class="vehicle">
           <a href="#/vehicle"><i class="fa fa-car"></i> <span>Vehicle</span></a>
         </li>
-        <li class="drivers">
-          <a href="#/vehicle"><i class="fa fa-user-tie"></i> <span>Drivers</span></a>
+        <li class="driver">
+          <a href="#/driver"><i class="fa fa-user-tie"></i> <span>Drivers</span></a>
         </li>
         <li class="header">General Forms</li>
         <li class="time">
