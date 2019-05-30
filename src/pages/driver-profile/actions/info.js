@@ -4,6 +4,6 @@ export default class {
   }
   async getDetails(opt) {
     this.xhr = new (await import('../../../utils/xhr')).default()
-    return this.xhr.getData(`automobile/${this.opt.id}`)
+    return this.xhr.getData(`account/driver/${this.opt.id}/profile`)
   }
 }

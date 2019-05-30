@@ -19,6 +19,9 @@ Navigo.then(routerClass => {
     '/vehicle': async () => {
       loadVehiclePage()
     },
+    '/vehicle/forms/time/*': (opt) => { console.log('haha time')
+      import('./forms/time')
+    },
     '/vehicle/forms/time': (opt) => {
       import('./forms/time')
     },

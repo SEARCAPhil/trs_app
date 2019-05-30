@@ -58,7 +58,7 @@ export default class {
           <div class="box box-primary">
             <div class="box-body box-profile">
 
-              <small><a href="#/contacts/form/5200/update" class=" pull-right"><i class="fa fa-pencil"></i> edit</a></small>
+              <!--<small><a href="#/contacts/form/5200/update" class=" pull-right"><i class="fa fa-pencil"></i> edit</a></small>-->
 
               <center>
                 <img src="${this.__profile.image ? this.__profile.image : this.__mapIcon(this.__profile.manufacturer) }" style="min-width: 100px;max-width: 200px;">
@@ -76,7 +76,7 @@ export default class {
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#info" data-toggle="tab" aria-expanded="true" class="tabs" data-target="#tab-info" data-group="profile-tab-panes">Info</a></li>
-              <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false" class="tabs" data-target="#tab-settings" data-group="profile-tab-panes">Settings</a></li>
+              <!--<li class=""><a href="#settings" data-toggle="tab" aria-expanded="false" class="tabs" data-target="#tab-settings" data-group="profile-tab-panes">Settings</a></li>-->
             </ul>
             <div class="tab-content">
               

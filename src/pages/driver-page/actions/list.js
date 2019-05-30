@@ -2,7 +2,7 @@
 export default class {
   async getAutomobile(opt = {}) {
     this.xhr = new (await import('../../../utils/xhr')).default()
-    return this.xhr.getData(`automobile?page=${opt.page || 1}`)
+    return this.xhr.getData(`account/driver?page=${opt.page || 1}`)
   }
 
   async search(opt = {}) {

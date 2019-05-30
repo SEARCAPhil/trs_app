@@ -46,6 +46,7 @@ export default class {
 
   async render () {
     this.__profile = (await this.loadProfile(this.__opt))
+    this.profileName = this.__profile.profile_name || `${this.__profile.first_name} ${this.__profile.middle_name} ${this.__profile.last_name}`
     this.__template = document.createElement('section')
     this.__template.classList.add('vehicle-section', 'row')
     this.__template.innerHTML = `
@@ -61,19 +62,19 @@ export default class {
         </div>
       </section>
 
-      <article class="col col-lg-12 col-md-12" style="margin-top: 50px;">
+      <article class="col col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 50px;">
         <!-- info -->
         <div class="col-md-3 user-profile-section">
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
 
-              <small><a href="#/contacts/form/5200/update" class=" pull-right"><i class="fa fa-pencil"></i> edit</a></small>
+              <!--<small><a href="#/account/form/${this.__profile.id}/update" class=" pull-right"><i class="fa fa-pencil"></i> edit</a></small>-->
 
               <img class="profile-user-img img-responsive img-circle" src="${user}" alt="User profile picture">
 
               <h3 class="profile-username text-center">   </h3>
-              <p class="text-center">John D. Hey</p>
+              <p class="text-center">${this.profileName}</p>
               <div class="btn btn-primary btn-block email-list-section" style="background: #009688;">0900000</div>
             </div>
             <!-- /.box-body -->
@@ -92,9 +93,9 @@ export default class {
               
               <div class="tab-pane active" id="tab-info" data-group="profile-tab-panes" style="height: auto;overflow:auto;padding-top: 20px;min-height: 60vh;">
                 <p class="text-muted">Basic Details</p><hr/>
-                <p><label>First Name</label> : John</p>
-                <p><label>Last Name</label> : Hey</p>
-                <p><label>Middle Name</label> : Dee</p>
+                <p><label>First Name</label> : ${this.__profile.first_name || ''}</p>
+                <p><label>Last Name</label> : ${this.__profile.last_name || ''}</p>
+                <p><label>Middle Name</label> : ${this.__profile.middle_name || ''}</p>
               </div>
 
               <div class="tab-pane" id="tab-settings" data-group="profile-tab-panes">

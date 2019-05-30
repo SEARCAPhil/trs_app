@@ -6,7 +6,7 @@ const loadVehicleTimeRecordPage = (opt = {}) => {
   const __target = document.querySelector('.vehicle-section')
   __page.then(Res => {
     return new Res.default(opt).then(html => {
-      return __target ? __target.replaceWith(html) : document.querySelector('.ajax-main-section').prepend(html)
+      return __target ? __target.replaceWith(html) : ((document.querySelector('.ajax-main-section').innerHTML = '') | document.querySelector('.ajax-main-section').prepend(html))
     })
   })
 }
@@ -17,6 +17,9 @@ Navigo.then(routerClass => {
     '': () => { },
     '/vehicle/forms/time': async () => {
       loadVehicleTimeRecordPage()
+    },
+    '/vehicle/forms/time/:id/update':  (param) => { 
+      loadVehicleTimeRecordPage(param)
     }
   }).resolve()
 })

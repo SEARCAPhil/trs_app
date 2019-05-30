@@ -5,7 +5,7 @@ export default class {
     this.timestamp = new Date().getTime()
   }
 
-  xhrDataFactory (url, body, headers = {}, isJson = true, method = 'GET') {
+  __xhrDataFactory (url, body, headers = {}, isJson = true, method = 'GET') {
     return new Promise((resolve, reject) => {
       window.fetch(`${URL.fullPath}${url}`,
         {

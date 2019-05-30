@@ -1,7 +1,7 @@
 /* eslint-disable new-cap */
 const Navigo = import('navigo')
 
-const loadVehicleProfilePage = (opt = {}) => {
+const loadProfilePage = (opt = {}) => {
   const __page = import('../../pages/driver-profile')
   const __target = document.querySelector('.vehicle-section')
   __page.then(Res => {
@@ -16,7 +16,7 @@ Navigo.then(routerClass => {
   router.on({
     '': () => { },
     '/driver/:id/profile': async (opt) => {
-      loadVehicleProfilePage(opt)
+      loadProfilePage(opt)
     }
   }).resolve()
 })

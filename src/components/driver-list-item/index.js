@@ -4,12 +4,14 @@ import style from './style'
 export default class {
   constructor (opt = {}) {
     this.__opt = opt
+    this.__opt.profile = this.__opt.profile || {}
+    this.profileName = this.__opt.profile.profile_name || `${this.__opt.profile.first_name || ''} ${this.__opt.profile.middle_name || ''} ${this.__opt.profile.last_name || ''}`
     return this.render(opt)
   }
 
   __bindListeners () {
     this.__template.addEventListener('click', () => {
-      window.location = `#/driver/${this.__opt.id}/profile`
+      window.location = `#/driver/${this.__opt.uid}/profile`
     })
   }
 
@@ -20,7 +22,7 @@ export default class {
       <style>${style.toString()}</style>
       <center>
         <img src="${user}" class="media-object" style="width:80px;">
-        <p><b>John D. Hey</b></p>
+        <p><b>${this.profileName}</b></p>
         <span class="text-muted"><i class="fa fa-phone"></i> 09xxxxxxxx</span>
       </center>`
     this.__bindListeners()
