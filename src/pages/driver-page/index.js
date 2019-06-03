@@ -6,8 +6,8 @@ export default class {
     return this.render()
   }
 
-  __bindSearch () { console.log(document.querySelector('.vehicle-search-box:not(.event-binded)'))
-  document.querySelector('.vehicle-search-box:not(.event-binded)').addEventListener('keyup', (e) => {
+  __bindSearch () {
+  document.querySelector('.driver-search-box:not(.event-binded)').addEventListener('keyup', (e) => {
     e.target.classList.add('event-binded')
     const input = e.target
     if (!input.value.length) this.__bindListeners()
@@ -22,7 +22,7 @@ export default class {
 
   __search (param) {
     // show loading
-    const container = this.__template.querySelector('.car-box-container ')
+    const container = this.__template.querySelector('.box-container')
     container.innerHTML = 'Loading results . . .'
     //search
     import('./actions/list').then(comp => {
@@ -33,7 +33,7 @@ export default class {
         // empty page then load search results
         container.innerHTML = ''
         res.data.forEach(el => {
-          this.loadVehicleItems(el)
+          this.loadItems(el)
         })
 
         // total count
