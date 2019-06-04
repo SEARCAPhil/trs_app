@@ -2,12 +2,12 @@
 import style from './style'
 import * as LibName from "vanilla-js-calendar"
 import style2 from 'vanilla-js-calendar/dist/js-calendar.css'
-
-
+import { O_DSYNC } from 'constants';
 
 
 export default class {
-  constructor () {
+  constructor (opt = {}) {
+    this.__opt = opt
     return this.render()
   }
 
@@ -19,75 +19,71 @@ export default class {
    this.loadCalendar()
   }
 
+  async getRecord (opt) {
+    this.records = new (await import('./actions/lists')).default()
+    return this.records.getRecordsPerVehicleAndDate(opt)
+  }
+
+  parseCalendarTds () {
+    document.querySelectorAll('table.calendar-table > tr > td ').forEach(el => {
+      let newEl = el.cloneNode(true)
+      el.parentNode.replaceChild(newEl, el);
+
+      newEl.querySelectorAll('.cell-event-mark').forEach(div => {
+        // add more listeners here
+        div.addEventListener('click', this.viewRecord.bind(this))
+      })
+    })
+  }
+
   loadCalendar () {
+    // initialize calendar
     let JSCalendar = LibName.JSCalendar;
     let JSCalendarEvent = LibName.JSCalendarEvent;
     let calendar = new JSCalendar(this.__template.querySelector('vehicle-calendar'), { /* options */ }).init()
+    let today = new Date();
 
-    var today = new Date();
+    // prevent dragging
+    calendar.on('dragging', (calendar, extra) => {
+      extra.monthElem.classList.remove('dragged')
+      this.parseCalendarTds ()
+    })
 
-            var matrix = {};
-            matrix[today.getFullYear()] = {};
-            matrix[today.getFullYear()][today.getMonth()] = {
-                "5"  : [{displayname : "You can't miss this event", color : "#792aca"}],
-                "12" : [
-                    {
-                        displayname : "OUT", 
-                        at : new Date(today.getFullYear(), today.getMonth(), 12, 15, 30).getTime()
-                    },
-                    {
-                        displayname : "IN", 
-                        color : "rgb(113, 180, 193)",
-                        at : new Date(today.getFullYear(), today.getMonth(), 12, 17, 30).getTime(),
-                        duration : 1000 * 60 * 60 * 2
-                    },
-                    {
-                        displayname : "This meeting is so important it's red", 
-                        color : "#9c3d27",
-                        at : new Date(today.getFullYear(), today.getMonth(), 12, 21, 55).toString()
-                    }
-                ],
-                "15" : [
-                    {
-                        displayname : "Something else to do here", 
-                        at : new Date(0, 0, 0, 9, 30).toString()
-                    },
-                    {
-                        displayname : "Similar event", 
-                        at : new Date(0, 0, 0, 9, 50).toString(),
-                        duration : 1000 * 60 * 10,
-                        color : "#5198da"
-                    }
-                ],
-                "16" : [{displayname : "Something to do here"}],
-                "17" : [{at : new Date(0, 0, 0, 10, 25).getTime()}],
-                "26" : [
-                    {
-                        displayname : "An event by the end of the month",
-                        at : new Date(0,0,0, 9)
-                    }
-                ],
-                "27" : [
-                    {
-                        displayname : "Short monthly recap meeting",
-                        at : new Date(0,0,0, 15, 30),
-                        color : "rgb(113, 180, 193)",
-                        duration : 1000 * 60 * 30
-                    }
-                ]
-            };
+    calendar.on('rendered', () => {
+      this.parseCalendarTds ()
+    })
 
-          calendar.on('dragging', (calendar, extra) => {
-            extra.monthElem.classList.remove('dragged')
-            
-            document.querySelectorAll('table.calendar-table > tr > td ').forEach(el => {
-              el.parentNode.replaceChild(el.cloneNode(true), el);
-            })
-          })
-          calendar.setMatrix(matrix).render()
+    calendar.on('matrixSet', (calendar, extra) => {
+      console.log(extra)
+    })
+      
+    // get all time records
+    this.getRecord ({id: this.__opt.id, date: '2019-06-01'}).then(res => {
+      var matrix = {};
+      matrix[today.getFullYear()] = {};
+      matrix[today.getFullYear()][today.getMonth()] = { }
 
-  
+      res.data.forEach(el => {
+        let day = el.date.substring(8)
+        day = day < 10 ? day.substring(1) : day
 
+        if(!matrix[today.getFullYear()][today.getMonth()][day]) {
+          matrix[today.getFullYear()][today.getMonth()][day] = []
+        }
+
+        matrix[today.getFullYear()][today.getMonth()][day].push({
+          displayname : el.mode.toUpperCase() + " " + el.driver_details_in_view.last_name, 
+          color : el.mode === 'in' ? "rgb(113, 180, 193)" : '#e91e63',
+          at : new Date(today.getFullYear(), today.getMonth(), 12, el.time.substring(0,2), el.time.substring(3,5)).getTime(),
+        }) 
+      })
+      // show data to calendar
+      calendar.setMatrix(matrix).render()
+    })
+  }
+
+  viewRecord () {
+    alert('a')
   }
 
   loadMenuSection (opt) {
