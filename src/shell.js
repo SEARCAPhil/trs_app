@@ -1,8 +1,11 @@
 /* eslint-disable new-cap */
 import { URL } from './config/app'
 import Message from 'vanilla-antd-message/dist/'
+import { Middleware } from './mixins/middleware'
 
+const AuthMiddleWare = import('./middlewares/Auth')
 const Navigo = import('navigo')
+const Profiler = import('./mixins/profiler')
 
 const loadHeader = (opt) => {
   const __header = import('./components/main-header')
@@ -34,6 +37,14 @@ const loadCookieSection = (opt) => {
   })
 }
 
+const loadProfile = () => {
+  return new Promise((resolve, reject) => {
+    Profiler.then(res => {
+      let profile = new res.default().get()
+      resolve(profile)
+    })
+  })
+}
 
 const hideHomePage = () => {
   let targ = document.querySelector('.home-section')
@@ -100,8 +111,9 @@ const loadRoutes = () => {
     const router = new routerClass.default(URL.fullPath, true)
     router.on({
       '': async () => {
-        // loadLoginPage()
-        window.location.hash = '/home'
+        profile = await loadProfile()
+        if (profile.id) return (window.location.hash = '#/home')
+        loadLoginPage()
       },
       '/login': () => {
         import('./routers/auth')
@@ -110,8 +122,18 @@ const loadRoutes = () => {
         import('./routers/auth')
       },
       '/signout': () => {
-        document.querySelector('.wrapper').innerHTML = ''   
-        window.location.hash = '/login'
+        Profiler.then(prof => {
+          let pr = new prof.default()
+          if(!pr.get().mail) {
+            setTimeout(() => {
+              window.location.reload()
+            }, 1000)
+          } else {
+            window.location = `https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=${window.location.href}`
+          }
+          pr.clear()
+          setTimeout(() => (window.location.hash = '#/'), 100)
+        })
       },
       '/home': () => {
         let profile = {}
@@ -139,7 +161,17 @@ const loadRoutes = () => {
     }).resolve()
   })
 }
-loadRoutes()
+
+const MiddleWare = new Middleware()
+let auth = AuthMiddleWare.then(middleware => { return new middleware.default() })
+
+MiddleWare.merge([auth]).then((value) => {
+  MiddleWare.run(['Auth']).then(() => {
+    loadRoutes()
+  }).catch(e => {
+    import('./routers/auth')
+  })
+})
 
 // service worker
 if ('serviceWorker' in navigator) {

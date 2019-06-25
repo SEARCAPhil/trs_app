@@ -26,7 +26,7 @@ const loadLoginPage = () => {
 Navigo.then(routerClass => {
   const router = new routerClass.default(URL.fullPath, true)
   router.on({
-    '': () => { },
+    '': () => { loadLoginPage () },
     '/login/corporate': async () => {
       loadLoginPage ()
     },

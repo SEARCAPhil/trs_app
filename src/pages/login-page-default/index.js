@@ -21,6 +21,9 @@ export default class {
           __form.classList.remove('hidden')
           __signOptions.classList.add('hidden')
           __doodleSec.classList.add('doodle-alt')
+          import('./actions/corporateAuth').then(res => {
+            return new res.default({target: this.__template.querySelector('#corporate-auth-form')})
+          })
         } else {
           __form.classList.add('hidden')
           __signOptions.classList.remove('hidden')
@@ -30,8 +33,17 @@ export default class {
     })
   }
 
+  __bindO365Login () {
+    import('./actions/createMSAL').then(loader => {
+      return new loader.default({
+        root: this.__template,
+        target: '.btn-office365'
+      })
+    })
+  }
+
   __bindListeners (opt = {}) {
-    // this.__bindLogin()
+    this.__bindO365Login()
     this.__bindShowCorporateForm ()
   }
 
@@ -65,16 +77,19 @@ export default class {
 
                 <section class="sign-in-options">
                   <p class="text-muted text-larger">Sign-in options</p>
-                  <button class="btn btn-office365 go-to-app-btn disabled">Office365 Account</button>
+                  <button class="btn btn-office365 go-to-app-btn">Office365 Account</button>
                   <button class="btn btn-corporate go-to-app-btn btn-corporate-show" data-toggle="show">Corporate Account</button>
                 </section>
 
                 <section class="col col-lg-6 col-sm-8  col-md-6 login-form-corporate row hidden">
-                  <h4 class="text-muted">Sign-in</h4>
-                  <input type="text" class="form-control mb" placeholder="USERNAME">
-                  <input type="password" class="form-control mb" placeholder="PASSWORD">
-                  <button class="btn btn-corporate go-to-app-btn btn-corporate-auth">SIGN-IN</button>
-                  <a href="#" class="btn-corporate-show" data-toggle="hide"><i class="fa fa-arrow-left"></i> CANCEL</a>
+                  <div class="auth-error-section"></div>
+                  <form onsubmit="event.preventDefault()" id="corporate-auth-form">
+                    <h4 class="text-muted">Sign-in</h4>
+                    <input type="text" class="form-control mb" id="username" placeholder="USERNAME" required>
+                    <input type="password" class="form-control mb" placeholder="PASSWORD" id="password" required>
+                    <button class="btn btn-corporate go-to-app-btn btn-corporate-auth">SIGN-IN</button>
+                    <a href="#" class="btn-corporate-show" data-toggle="hide"><i class="fa fa-arrow-left"></i> CANCEL</a>
+                  </form>
                 </section>
 
               

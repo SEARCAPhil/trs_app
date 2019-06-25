@@ -95,7 +95,7 @@
     "file-loader": "^3.0.1",
     "highcharts": "^7.0.3",
     "moment": "^2.24.0",
-    "msal": "^0.2.4",
+    "msal": "^1.0.2",
     "navigo": "^7.1.2",
     "pubsub-js": "^1.7.0",
     "stylus": "^0.54.5",
