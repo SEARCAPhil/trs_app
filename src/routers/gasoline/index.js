@@ -1,8 +1,8 @@
 /* eslint-disable new-cap */
 const Navigo = import('navigo')
 
-const loadVehiclePage = (opt = {}) => {
-  const __page = import('../../pages/vehicle-page')
+const loadPage = (opt = {}) => {
+  const __page = import('../../pages/gasoline-page')
   const __target = document.querySelector('.vehicle-section')
   const __ajaxSection = document.querySelector('.ajax-main-section')
   __page.then(Res => {
@@ -16,24 +16,11 @@ Navigo.then(routerClass => {
   const router = new routerClass.default(URL.fullPath, true)
   router.on({
     '': () => { },
-    '/vehicle': async () => {
-      loadVehiclePage()
+    '/gasoline': async () => {
+      loadPage()
     },
-    '/vehicle/forms/time/*': (opt) => { 
-      import('./forms/time')
-    },
-    '/vehicle/forms/time': (opt) => {
-      import('./forms/time')
-    },
-    '/vehicle/forms/gasoline': (opt) => {
-      import('./forms/gasoline')
-    },
-    '/vehicle/:id/profile': (opt) => {
+    '/gasoline/:id/profile': async () => {
       import('./profile')
-    },
-    '/vehicle/:id/time': (opt) => {
-      import('./time')
     }
-
   }).resolve()
 })

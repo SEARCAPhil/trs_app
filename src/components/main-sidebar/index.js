@@ -39,23 +39,26 @@ export default class {
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 10px;">
         <li class="header">List</li>
-        <li class="vehicle">
+        <!--<li class="vehicle">
           <a href="#/vehicle"><i class="fa fa-car"></i> <span>Vehicle</span></a>
         </li>
         <li class="driver">
           <a href="#/driver"><i class="fa fa-user-tie"></i> <span>Drivers</span></a>
+        </li>-->
+        <li class="gasoline">
+          <a href="#/gasoline"><i class="fa fa-gas-pump"></i> <span>Gasoline List</span></a>
         </li>
         <li class="header">General Forms</li>
-        <li class="time">
+        <!--<li class="time">
           <a href="#/vehicle/forms/time"><i class="fa fa-hourglass-half"></i> <span>Time Record</span></a>
+        </li>-->
+        <li class="gasoline-form">
+          <a href="#/vehicle/forms/gasoline"><i class="fa fa-gas-pump"></i> <span>Gasoline Form</span></a>
         </li>
-        <li class="disabled">
-          <a href="#/vehicle"><i class="fa fa-gas-pump"></i> <span>Gasoline</span></a>
-        </li>
-        <li class="header">Reports</li>
+        <!--<li class="header">Reports</li>
         <li class="disabled">
           <a href="#/vehicle"><i class="fa fa-users"></i> <span>Gasoline Overlay</span></a>
-        </li>
+        </li>-->
       </ul>
 
       <ul class="sidebar-menu" data-widget="tree" style="margin-top: 100px;">

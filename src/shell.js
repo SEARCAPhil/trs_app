@@ -150,6 +150,14 @@ const loadRoutes = () => {
         loadMain(profile)
         import('./routers/vehicle/')
       },
+      '/gasoline': () => {
+        loadMain(profile)
+        import('./routers/gasoline/')
+      },
+      '/gasoline/*': () => {
+        loadMain(profile)
+        import('./routers/gasoline/')
+      },
       '/driver': () => {
         loadMain(profile)
         import('./routers/driver/')
